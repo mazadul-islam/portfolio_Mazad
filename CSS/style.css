@@ -367,78 +367,95 @@ section {
     .cert-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 }
 
-/* --- MOBILE RESPONSIVE FIXES --- */
+/* --- Optimized Header for All Devices --- */
+.header { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 15px 10%; 
+    background: rgba(0, 0, 0, 0.95); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 1000; 
+    transition: 0.3s;
+}
+
+/* --- The "Auto-Adjust" Magic (Media Queries) --- */
+
+/* Tablet and Small Laptops */
+@media (max-width: 1024px) {
+    .header { padding: 15px 5%; }
+    .resume-main-grid, .ref-grid { grid-template-columns: 1fr; }
+    .cert-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile Devices (Phones) */
 @media (max-width: 768px) {
-    /* 1. Prevent Header Overlap */
     .header {
-        padding: 15px 5%;
-        flex-direction: column; /* Stacks logo and nav if needed */
-        gap: 10px;
+        flex-direction: column; /* Stacks logo over menu */
+        padding: 10px 0;
+        height: auto;
     }
 
     .navbar {
+        margin-top: 10px;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Allows links to flow to next line instead of overlapping */
         justify-content: center;
         gap: 10px;
+        width: 100%;
+        padding: 0 10px;
     }
 
     .navbar a {
         margin-left: 0;
-        margin: 0 10px;
-        font-size: 12px;
+        font-size: 13px;
+        padding: 5px 8px;
     }
 
-    /* 2. Fix Home Section Spacing */
     section {
-        padding: 80px 5% 40px; /* Reduce side padding so content doesn't squeeze */
+        padding: 140px 5% 40px; /* More top padding so header doesn't cover titles */
     }
 
-    .home-img {
-        width: 200px; /* Smaller image for mobile */
-        height: 200px;
+    /* Resume Fixes from your screenshot */
+    .resume-top-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
     }
 
-    .glowing-circle, .image {
-        width: 160px;
-        height: 160px;
+    .download-btn {
+        position: static; /* Moves button out of the way of the title */
+        width: fit-content;
+    }
+
+    .resume-cat-title {
+        justify-content: center; /* Centers titles on mobile */
+    }
+
+    /* About Fixes */
+    .services {
+        grid-template-columns: 1fr; /* One card per row */
     }
 
     .home-content h1 {
-        font-size: 28px; /* Smaller name text */
+        font-size: 32px;
     }
 
-    .home-content h3 {
-        font-size: 16px;
-    }
-
-    /* 3. Fix About & Services Cards */
-    .services {
-        grid-template-columns: 1fr; /* Stack cards vertically on phones */
-        width: 100%;
-    }
-
-    .about-text {
-        font-size: 14px;
-        text-align: justify;
-    }
-
-    /* 4. Fix Resume Grid */
-    .resume-main-grid, .ref-grid {
-        grid-template-columns: 1fr; /* No more side-by-side columns */
-    }
-    
-    .resume-top-bar {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .download-btn {
-        position: static; /* Button stays centered under title */
-    }
-
-    /* 5. Fix Certificates */
+    /* Project/Cert Card spacing */
     .cert-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Very Small Phones */
+@media (max-width: 480px) {
+    .navbar a {
+        font-size: 11px;
+    }
+    
+    .section-title {
+        font-size: 24px;
     }
 }
